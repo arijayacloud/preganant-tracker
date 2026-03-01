@@ -9,25 +9,17 @@ use Illuminate\Support\Facades\Auth;
 
 class TrimesterDiscomfortController extends Controller
 {
-    public function index()
+    public function index($trimester)
     {
         $user = Auth::user();
 
-        /*
-        |--------------------------------------------------------------------------
-        | 1️⃣ Ambil Profil Kehamilan
-        |--------------------------------------------------------------------------
-        */
         $pregnancy = PregnancyProfile::where('user_id', $user->id)->first();
 
-        $currentTrimester = optional($pregnancy)->trimester ?? 1;
-        $week = optional($pregnancy)->week ?? 1; // ✅ TAMBAHKAN INI
+        // Gunakan trimester dari tab
+        $currentTrimester = in_array($trimester, [1, 2, 3]) ? $trimester : 1;
 
-        /*
-        |--------------------------------------------------------------------------
-        | 2️⃣ Ambil Data Ketidaknyamanan Trimester
-        |--------------------------------------------------------------------------
-        */
+        $week = optional($pregnancy)->week ?? 1;
+
         $discomforts = TrimesterDiscomfort::where('trimester', $currentTrimester)
             ->orderBy('category')
             ->get();
@@ -35,29 +27,14 @@ class TrimesterDiscomfortController extends Controller
         $fisik = $discomforts->where('category', 'fisik');
         $emosional = $discomforts->where('category', 'emosional');
 
-        /*
-        |--------------------------------------------------------------------------
-        | 3️⃣ Ambil HARS Terakhir
-        |--------------------------------------------------------------------------
-        */
         $latestHars = $user->latestHars;
         $harsLevel = optional($latestHars)->anxiety_level;
 
-        /*
-        |--------------------------------------------------------------------------
-        | 4️⃣ Rekomendasi Jika Kecemasan Sedang/Berat
-        |--------------------------------------------------------------------------
-        */
         $showRecommendation = in_array($harsLevel, ['sedang', 'berat']);
 
-        /*
-        |--------------------------------------------------------------------------
-        | 5️⃣ Return View
-        |--------------------------------------------------------------------------
-        */
         return view('mother.panduan', [
             'trimester' => $currentTrimester,
-            'week' => $week, // ✅ KIRIM KE VIEW
+            'week' => $week,
             'fisik' => $fisik,
             'emosional' => $emosional,
             'harsLevel' => $harsLevel,
