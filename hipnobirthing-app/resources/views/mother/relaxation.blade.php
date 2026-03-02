@@ -41,30 +41,30 @@ rounded-3xl shadow-xl p-8 text-white">
 
             <!-- 📊 STATUS LEVEL -->
             @php
-    $level = strtolower($latestHars->anxiety_level ?? '');
-    $color = match($level){
-        'ringan' => 'bg-green-500',
-        'sedang' => 'bg-yellow-400',
-        'berat'  => 'bg-red-500',
-        default  => 'bg-gray-400'
-    };
-@endphp
+            $level = strtolower($latestHars->anxiety_level ?? '');
+            $color = match($level){
+            'ringan' => 'bg-green-500',
+            'sedang' => 'bg-yellow-400',
+            'berat' => 'bg-red-500',
+            default => 'bg-gray-400'
+            };
+            @endphp
 
-<div class="bg-white rounded-3xl shadow-sm border border-gray-100 
+            <div class="bg-white rounded-3xl shadow-sm border border-gray-100 
 p-6 flex items-center justify-between hover:shadow-lg transition">
 
-    <div>
-        <p class="text-gray-500 text-sm">Level Kecemasan Saat Ini</p>
-        <p class="text-2xl font-bold text-gray-700 mt-2">
-            {{ ucfirst($latestHars->anxiety_level ?? 'Belum Tes') }}
-        </p>
-    </div>
+                <div>
+                    <p class="text-gray-500 text-sm">Level Kecemasan Saat Ini</p>
+                    <p class="text-2xl font-bold text-gray-700 mt-2">
+                        {{ ucfirst($latestHars->anxiety_level ?? 'Belum Tes') }}
+                    </p>
+                </div>
 
-    <span class="px-6 py-2 rounded-full text-white text-sm font-semibold shadow {{ $color }}">
-        {{ ucfirst($latestHars->anxiety_level ?? '-') }}
-    </span>
+                <span class="px-6 py-2 rounded-full text-white text-sm font-semibold shadow {{ $color }}">
+                    {{ ucfirst($latestHars->anxiety_level ?? '-') }}
+                </span>
 
-</div>
+            </div>
 
             <!-- 📈 STATISTIK -->
             <div class="grid md:grid-cols-3 gap-6">
@@ -102,33 +102,33 @@ hover:shadow-lg transition">
 
             <!-- 🧠 INSIGHT -->
             @if($recommendation)
-<div class="bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50
+            <div class="bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50
 rounded-3xl p-6 border border-purple-100 shadow-sm">
 
-    <p class="text-purple-700 font-semibold">
-        🧠 Insight Sistem
-    </p>
+                <p class="text-purple-700 font-semibold">
+                    🧠 Insight Sistem
+                </p>
 
-    <p class="mt-3 text-sm text-gray-600 leading-relaxed">
-        {{ $recommendation }}
-    </p>
-</div>
-@endif
+                <p class="mt-3 text-sm text-gray-600 leading-relaxed">
+                    {{ $recommendation }}
+                </p>
+            </div>
+            @endif
 
             <!-- 🔔 REMINDER -->
-           @if($showReminder)
-<div class="bg-rose-50 border border-rose-200 
+            @if($showReminder)
+            <div class="bg-rose-50 border border-rose-200 
 rounded-2xl p-5 shadow-sm">
 
-    <p class="text-rose-600 font-semibold">
-        🔔 Sudah 3 hari belum latihan
-    </p>
+                <p class="text-rose-600 font-semibold">
+                    🔔 Sudah 3 hari belum latihan
+                </p>
 
-    <p class="text-sm text-rose-500 mt-2">
-        Luangkan 10 menit hari ini untuk relaksasi 🌸
-    </p>
-</div>
-@endif
+                <p class="text-sm text-rose-500 mt-2">
+                    Luangkan 10 menit hari ini untuk relaksasi 🌸
+                </p>
+            </div>
+            @endif
 
             <!-- 📊 GRAFIK -->
             <div
@@ -145,7 +145,7 @@ rounded-2xl p-5 shadow-sm">
             </div>
             <!-- 🎥 VIDEO TUTORIAL HYPNOBIRTHING -->
             @if(count($tutorialVideos))
-            <div class="space-y-6">
+            <section class="space-y-6">
 
                 <h3 class="text-xl font-semibold text-gray-700">
                     🎥 Video Tutorial Teknik Hypnobirthing
@@ -154,7 +154,6 @@ rounded-2xl p-5 shadow-sm">
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
                     @foreach($tutorialVideos as $video)
-
                     <div class="bg-white rounded-3xl shadow-md border border-gray-100 
             hover:shadow-xl hover:-translate-y-2 
             transition-all duration-500 overflow-hidden">
@@ -167,94 +166,104 @@ rounded-2xl p-5 shadow-sm">
                             </iframe>
                         </div>
 
-                        <div class="p-5">
+                        <div class="p-5 space-y-2">
                             <h4 class="font-semibold text-gray-800 text-sm">
                                 {{ $video['title'] }}
                             </h4>
 
-                            <p class="text-xs text-gray-400 mt-2">
+                            <p class="text-xs text-gray-400">
                                 Durasi {{ $video['duration'] }} menit
                             </p>
                         </div>
 
                     </div>
-
                     @endforeach
 
                 </div>
-            </div>
+
+            </section>
             @endif
 
             <!-- 🎵 AUDIO MODULE -->
             @if(count($audios))
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                @foreach($audios as $audio)
+            <section class="space-y-6 mt-12">
 
-                <div class="group bg-white rounded-3xl shadow-md border border-gray-100 
-        hover:shadow-2xl hover:-translate-y-2 
-        transition-all duration-500 overflow-hidden">
+                <h3 class="text-xl font-semibold text-gray-700">
+                    🎵 Modul Relaksasi
+                </h3>
 
-                    <!-- VIDEO -->
-                    <div class="relative aspect-video overflow-hidden">
-                        <iframe
-                            class="w-full h-full group-hover:scale-105 transition duration-500"
-                            src="{{ $audio['url'] }}"
-                            allowfullscreen>
-                        </iframe>
-                    </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                    <!-- CONTENT -->
-                    <div class="p-6 space-y-4">
+                    @foreach($audios as $audio)
 
-                        <div class="flex items-center justify-between">
-                            <h4 class="font-semibold text-gray-800 text-sm leading-snug">
-                                {{ $audio['title'] }}
-                            </h4>
+                    <div class="group bg-white rounded-3xl shadow-md border border-gray-100 
+            hover:shadow-2xl hover:-translate-y-2 
+            transition-all duration-500 overflow-hidden">
 
-                            <span class="text-xs px-3 py-1 rounded-full
-                        {{ $audio['type'] == 'guided' ? 
-                        'bg-blue-100 text-blue-600' : 
-                        'bg-pink-100 text-pink-600' }}">
-                                {{ ucfirst($audio['type']) }}
-                            </span>
+                        <!-- VIDEO -->
+                        <div class="relative aspect-video overflow-hidden">
+                            <iframe
+                                class="w-full h-full group-hover:scale-105 transition duration-500"
+                                src="{{ $audio['url'] }}"
+                                allowfullscreen>
+                            </iframe>
                         </div>
 
-                        <p class="text-xs text-gray-400">
-                            Durasi {{ $audio['duration'] }} menit
-                        </p>
+                        <!-- CONTENT -->
+                        <div class="p-6 space-y-4">
 
-                        <!-- BUTTON -->
-                        <form action="{{ route('relaxation.session') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="title" value="{{ $audio['title'] }}">
-                            <input type="hidden" name="type" value="{{ $audio['type'] }}">
-                            <input type="hidden" name="duration" value="{{ $audio['duration'] }}">
+                            <div class="flex items-center justify-between gap-3">
+                                <h4 class="font-semibold text-gray-800 text-sm leading-snug">
+                                    {{ $audio['title'] }}
+                                </h4>
 
-                            <button type="submit"
-                                class="w-full bg-gradient-to-r from-rose-400 to-purple-500
+                                <span class="text-xs px-3 py-1 rounded-full
+                        {{ $audio['type'] == 'guided' 
+                            ? 'bg-blue-100 text-blue-600' 
+                            : 'bg-pink-100 text-pink-600' }}">
+                                    {{ ucfirst($audio['type']) }}
+                                </span>
+                            </div>
+
+                            <p class="text-xs text-gray-400">
+                                Durasi {{ $audio['duration'] }} menit
+                            </p>
+
+                            <form action="{{ route('relaxation.session') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="title" value="{{ $audio['title'] }}">
+                                <input type="hidden" name="type" value="{{ $audio['type'] }}">
+                                <input type="hidden" name="duration" value="{{ $audio['duration'] }}">
+
+                                <button type="submit"
+                                    class="w-full bg-gradient-to-r from-rose-400 to-purple-500
                         hover:scale-105 hover:shadow-lg
                         active:scale-95
                         transition-all duration-300
                         text-white py-3 rounded-xl font-medium">
 
-                                ✅ Tandai Selesai
+                                    ✅ Tandai Selesai
+                                </button>
+                            </form>
 
-                            </button>
-                        </form>
-
+                        </div>
                     </div>
+
+                    @endforeach
+
                 </div>
 
-                @endforeach
-            </div>
+            </section>
 
             @else
-            <div class="bg-white rounded-2xl p-10 text-center shadow-md border border-gray-100">
+
+            <div class="bg-white rounded-2xl p-10 text-center shadow-md border border-gray-100 mt-12">
                 <p class="text-gray-500">
                     Belum ada modul tersedia.
                 </p>
             </div>
+
             @endif
 
         </div>
