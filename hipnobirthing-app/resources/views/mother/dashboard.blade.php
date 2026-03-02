@@ -126,14 +126,14 @@
 
                         <p class="text-xl font-semibold">
 
-                            @if($latestHars->anxiety_level == 'Rendah')
-                            <span class="text-green-500">Rendah</span>
+                            @if($latestHars->anxiety_level == 'Ringan')
+                            <span class="text-green-500">Ringan</span>
 
                             @elseif($latestHars->anxiety_level == 'Sedang')
                             <span class="text-yellow-500">Sedang</span>
 
                             @else
-                            <span class="text-red-500">Tinggi</span>
+                            <span class="text-red-500">Berat</span>
                             @endif
 
                         </p>
@@ -337,10 +337,11 @@
 
 
     <!-- RELAKSASI -->
-    <div class="bg-white/80 dark:bg-gray-800/70 backdrop-blur-lg border border-gray-100 dark:border-gray-700
-        rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-6">
+    <div class="bg-white border border-pink-100 
+    rounded-2xl shadow-sm hover:shadow-md 
+    transition duration-300 p-6">
 
-        <h3 class="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-200">
+        <h3 class="text-lg font-semibold mb-4 text-pink-700">
             Rekomendasi Relaksasi
         </h3>
 
@@ -348,24 +349,27 @@
 
         @if($latestHars->anxiety_level === 'berat')
 
-        <p class="text-sm text-gray-600 dark:text-gray-300">
-            Tingkat kecemasan Anda tergolong <span class="font-semibold text-red-500">Berat</span>.
+        <p class="text-sm text-gray-700">
+            Tingkat kecemasan Anda tergolong
+            <span class="font-semibold text-red-500">Berat</span>.
             Disarankan melakukan latihan hypnobirthing setiap hari
             untuk membantu menenangkan pikiran dan tubuh.
         </p>
 
         @elseif($latestHars->anxiety_level === 'sedang')
 
-        <p class="text-sm text-gray-600 dark:text-gray-300">
-            Tingkat kecemasan Anda tergolong <span class="font-semibold text-yellow-500">Sedang</span>.
+        <p class="text-sm text-gray-700">
+            Tingkat kecemasan Anda tergolong
+            <span class="font-semibold text-yellow-500">Sedang</span>.
             Lakukan latihan pernapasan dan relaksasi minimal
             3 kali seminggu untuk menjaga kestabilan emosi.
         </p>
 
         @else
 
-        <p class="text-sm text-gray-600 dark:text-gray-300">
-            Tingkat kecemasan Anda tergolong <span class="font-semibold text-green-500">Ringan</span>.
+        <p class="text-sm text-gray-700">
+            Tingkat kecemasan Anda tergolong
+            <span class="font-semibold text-green-500">Ringan</span>.
             Kondisi mental cukup baik. Tetap lakukan relaksasi ringan
             untuk menjaga ketenangan selama kehamilan.
         </p>
@@ -374,7 +378,7 @@
 
         @else
 
-        <p class="text-sm text-gray-500 dark:text-gray-400">
+        <p class="text-sm text-gray-600">
             Anda belum mengisi kuesioner HARS.
             Silakan lakukan pemeriksaan untuk mendapatkan rekomendasi relaksasi yang sesuai.
         </p>
@@ -382,10 +386,11 @@
         @endif
 
         <a href="{{ route('mother.relaxation') }}"
-            class="inline-block mt-5 bg-pink-500 hover:bg-pink-600 text-white px-5 py-2 rounded-xl transition duration-200">
+            class="inline-block mt-5 bg-pink-500 hover:bg-pink-600 
+        text-white px-5 py-2 rounded-xl shadow-sm 
+        transition duration-200">
 
             Mulai Relaksasi
-
         </a>
 
     </div>

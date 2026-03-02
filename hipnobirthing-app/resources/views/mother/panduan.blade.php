@@ -34,19 +34,19 @@ rounded-3xl shadow-xl p-8 text-white">
             <!-- TAB TRIMESTER -->
             <div class="bg-white rounded-2xl shadow-sm border border-pink-100 p-2 flex gap-2 w-fit">
 
-                <a href="{{ route('panduan.trimester',1) }}"
+                <a href="{{ route('mother.panduan',1) }}"
                     class="px-5 py-2 rounded-xl text-sm font-semibold
 {{ $trimester == 1 ? 'bg-pink-500 text-white' : 'text-gray-600 hover:bg-pink-50' }}">
                     Trimester 1
                 </a>
 
-                <a href="{{ route('panduan.trimester',2) }}"
+                <a href="{{ route('mother.panduan',2) }}"
                     class="px-5 py-2 rounded-xl text-sm font-semibold
 {{ $trimester == 2 ? 'bg-pink-500 text-white' : 'text-gray-600 hover:bg-pink-50' }}">
                     Trimester 2
                 </a>
 
-                <a href="{{ route('panduan.trimester',3) }}"
+                <a href="{{ route('mother.panduan',3) }}"
                     class="px-5 py-2 rounded-xl text-sm font-semibold
 {{ $trimester == 3 ? 'bg-pink-500 text-white' : 'text-gray-600 hover:bg-pink-50' }}">
                     Trimester 3

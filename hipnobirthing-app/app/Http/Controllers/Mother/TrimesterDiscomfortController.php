@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class TrimesterDiscomfortController extends Controller
 {
-    public function index($trimester)
+    public function index($trimester = 1)
     {
         $user = Auth::user();
 

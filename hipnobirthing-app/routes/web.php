@@ -42,15 +42,9 @@ Route::middleware(['auth'])->group(function () {
         [RelaxationController::class, 'storeSession']
     )->name('relaxation.session');
 
-    Route::get(
-        '/panduan-kehamilan',
-        [TrimesterDiscomfortController::class, 'index']
-    )->name('mother.panduan');
-
-    Route::get(
-        '/panduan-kehamilan/trimester/{trimester}',
-        [TrimesterDiscomfortController::class, 'index']
-    )->name('panduan.trimester');
+    Route::get('/panduan-kehamilan/{trimester?}', 
+    [TrimesterDiscomfortController::class, 'index']
+)->name('mother.panduan');
 });
 
 Route::middleware('auth')->group(function () {

@@ -40,8 +40,8 @@
                     </a>
 
                     <a href="{{ route('mother.panduan') }}" class="hover:text-pink-200">
-    Panduan Kehamilan
-</a>
+                        Panduan Kehamilan
+                    </a>
 
                     <a href="{{ route('mother.relaxation') }}" class="hover:text-pink-200">
                         Relaksasi
@@ -67,7 +67,7 @@
 
                     <x-slot name="trigger">
 
-                        <button class="flex items-center text-white space-x-2">
+                        <button class="flex items-center text-white space-x-2 focus:outline-none focus:ring-0">
 
                             <div class="bg-white text-pink-500 w-8 h-8 flex items-center justify-center rounded-full font-bold">
                                 {{ substr(Auth::user()->name,0,1) }}
@@ -88,43 +88,35 @@
 
 
                     <x-slot name="content">
-
-                        <div class="w-56 bg-white text-gray-700 rounded-xl shadow-xl overflow-hidden border">
+                        <div class="w-56 bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-200 z-50">
 
                             <!-- Profile -->
                             <a href="{{ route('profile.edit') }}"
-                                class="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 transition">
+                                class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-pink-50 transition">
 
-                                <span class="text-lg">👤</span>
+                                <span class="text-lg">🤰</span>
                                 <span class="font-medium">Profile</span>
-
                             </a>
 
-                            <!-- Divider -->
-                            <div class="border-t border-gray-200"></div>
+                            <div class="border-t"></div>
 
                             <!-- Logout -->
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-
                                 <button type="submit"
-                                    class="w-full flex items-center gap-3 px-4 py-3 hover:bg-red-500 hover:text-white transition">
+                                    class="w-full text-left flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-red-500 hover:text-white transition">
 
                                     <span class="text-lg">🚪</span>
                                     <span class="font-medium">Logout</span>
-
                                 </button>
                             </form>
 
                         </div>
-
                     </x-slot>
 
                 </x-dropdown>
 
             </div>
-
-
 
             <!-- MOBILE BUTTON -->
             <div class="flex items-center sm:hidden">
